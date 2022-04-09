@@ -9,7 +9,7 @@ import {
   orderByKey,
 } from "firebase/database";
 import { database } from "../firebase/firebaseConfig";
-import { getMonthNum } from "./helperFuncs";
+import { getMonthNum, getDay } from "./helperFuncs";
 
 export const getUsers = () => {
   const usersDb = ref(database);
@@ -26,4 +26,14 @@ export const getMonthlyCelebrants = async () => {
     userMonth === getMonthNum() && monthlyCelebs.push(users[user]);
   }
   return monthlyCelebs;
+};
+
+export const getDailyCelebrants = async () => {
+  const users = await getUsers();
+  const dailyCelebs = [];
+  for (let user in users) {
+    users[user].birth_date.startsWith(`${getDay()}/${getMonthNum()}`) &&
+      dailyCelebs.push(users[user]);
+  }
+  return dailyCelebs;
 };

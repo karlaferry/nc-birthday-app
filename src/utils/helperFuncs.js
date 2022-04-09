@@ -22,6 +22,11 @@ exports.getMonthNum = () => {
   return date.getMonth() + 1;
 };
 
+exports.getDay = () => {
+  const date = new Date();
+  return date.getDate();
+};
+
 exports.sortBirthdays = (array) => {
   return array.sort((a, b) => {
     const previousBirthday = +a.birth_date.split("/")[0];
