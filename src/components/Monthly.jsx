@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import SingleMonthlyCelebrant from "./SingleMonthlyCelebrant";
-import { getMonthAndYear, getMonthNum } from "../utils/helperFuncs";
+import { getMonthAndYear, sortBirthdays } from "../utils/helperFuncs";
 import { getMonthlyCelebrants } from "../utils/dbCalls";
 
 export default function Monthly() {
@@ -22,7 +22,7 @@ export default function Monthly() {
       {isLoading ? (
         <p>Celebrants loading...</p>
       ) : (
-        monthlyCelebs.map((monthlyCeleb) => {
+        sortBirthdays(monthlyCelebs).map((monthlyCeleb) => {
           return (
             <SingleMonthlyCelebrant
               monthlyCeleb={monthlyCeleb}

@@ -21,3 +21,17 @@ exports.getMonthNum = () => {
   const date = new Date();
   return date.getMonth() + 1;
 };
+
+exports.sortBirthdays = (array) => {
+  return array.sort((a, b) => {
+    const previousBirthday = +a.birth_date.split("/")[0];
+    const currentBirthday = +b.birth_date.split("/")[0];
+    let comparison = 0;
+    if (previousBirthday > currentBirthday) {
+      comparison = 1;
+    } else if (previousBirthday < currentBirthday) {
+      comparison = -1;
+    }
+    return comparison;
+  });
+};
