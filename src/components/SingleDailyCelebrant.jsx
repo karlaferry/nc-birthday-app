@@ -1,5 +1,4 @@
 import React from "react";
-import defaultAvatar from "../defaultAvatar.png";
 import { Link } from "react-router-dom";
 
 export default function SingleDailyCelebrant({ dailyCeleb }) {
@@ -9,10 +8,9 @@ export default function SingleDailyCelebrant({ dailyCeleb }) {
   // };
   return (
     <div>
-      <img src={defaultAvatar} width="100" />
+      <img src={`${dailyCeleb.avatar_url}`} alt="celebrant avatar" />
       <h3>
-        {/* <Link to="/celebrant"></Link> */}
-        {dailyCeleb.first_name}
+        <Link to={`/celebrant/${dailyCeleb.id}`}>{dailyCeleb.first_name}</Link>
       </h3>
     </div>
   );
