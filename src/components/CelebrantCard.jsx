@@ -1,5 +1,5 @@
 import React from "react";
 
 export default function CelebrantCard() {
-  return <div>CelebrantCard</div>;
+  return <h2>CelebrantCard</h2>;
 }
