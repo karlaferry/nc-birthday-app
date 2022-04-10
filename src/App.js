@@ -10,12 +10,12 @@ function App() {
   getUsers();
   return (
     <div>
-      <Header />
-      <Monthly />
-      <Daily />
       <BrowserRouter>
+        <Header />
+        <Monthly />
+        <Daily />
         <Routes>
-          <Route path="/celebrant/:user" element={<CelebrantCard />} />
+          <Route path="/celebrant/:id" element={<CelebrantCard />} />
         </Routes>
       </BrowserRouter>
     </div>
