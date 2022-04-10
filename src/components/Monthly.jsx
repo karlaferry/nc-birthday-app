@@ -26,7 +26,7 @@ export default function Monthly() {
           return (
             <SingleMonthlyCelebrant
               monthlyCeleb={monthlyCeleb}
-              key={monthlyCeleb.birth_date}
+              key={`${monthlyCeleb.birth_date}${monthlyCeleb.first_name}`}
             />
           );
         })

@@ -27,7 +27,7 @@ export default function Daily() {
           return (
             <SingleDailyCelebrant
               dailyCeleb={dailyCeleb}
-              key={dailyCeleb.birth_date}
+              key={`${dailyCeleb.birth_date}${dailyCeleb.first_name}`}
             />
           );
         })
