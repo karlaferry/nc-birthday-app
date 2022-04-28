@@ -40,7 +40,7 @@ export default function Login() {
 					placeholder="Password"
 					onChange={handlePassword}
 				/>
-				<button onClick={logIn}>Sign Up</button>
+				<button onClick={logIn}>Login</button>
 			</form>
 			{user && <h2>{user.email}</h2>}
 			{errorMsg && <h3>{errorMsg}</h3>}
