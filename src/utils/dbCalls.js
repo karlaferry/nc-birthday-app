@@ -18,6 +18,13 @@ export const getUsers = () => {
 	});
 };
 
+// export const getSingleUser = (id) => {
+// 	const usersDb = ref(database)
+// 	return get(
+//     query(ref(usersDb, `/users/` + userId + "/water"), orderByKey())
+//   )
+// }
+
 export const getMonthlyCelebrants = async () => {
 	const users = await getUsers();
 	const monthlyCelebs = [];
