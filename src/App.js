@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useContext } from "react";
-import "./App.css";
 import Header from "./components/Header";
 import Home from "./components/Home";
 import Register from "./components/Register";
