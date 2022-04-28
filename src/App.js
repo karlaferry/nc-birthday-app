@@ -6,22 +6,23 @@ import Register from "./components/Register";
 import Login from "./components/Login";
 import Dashboard from "./components/Dashboard";
 import CelebrantCard from "./components/CelebrantCard";
-import { getUsers } from "./utils/dbCalls";
+import { UserProvider } from "./Contexts/User";
 
 function App() {
-	getUsers();
 	return (
 		<div>
-			<BrowserRouter>
-				<Header />
-				<Routes>
-					<Route path="/" element={<Home />} />
-					<Route path="/register" element={<Register />} />
-					<Route path="/login" element={<Login />} />
-					<Route path="/dashboard" element={<Dashboard />} />
-					<Route path="/celebrant/:id" element={<CelebrantCard />} />
-				</Routes>
-			</BrowserRouter>
+			<UserProvider>
+				<BrowserRouter>
+					<Header />
+					<Routes>
+						<Route path="/" element={<Home />} />
+						<Route path="/register" element={<Register />} />
+						<Route path="/login" element={<Login />} />
+						<Route path="/dashboard" element={<Dashboard />} />
+						<Route path="/celebrant/:id" element={<CelebrantCard />} />
+					</Routes>
+				</BrowserRouter>
+			</UserProvider>
 		</div>
 	);
 }
