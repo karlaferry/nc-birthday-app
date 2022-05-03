@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import Header from "./components/Header";
 import Home from "./components/Home";
 import Register from "./components/Register";
@@ -9,12 +9,21 @@ import CelebrantCard from "./components/CelebrantCard";
 import { UserContext } from "./Contexts/User";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase/firebaseConfig";
+import { getSingleUser } from "./utils/dbCalls";
 
 function App() {
-	const { setUser } = useContext(UserContext);
+	const { user, setUser, setUserData } = useContext(UserContext);
 	onAuthStateChanged(auth, (currentUser) => {
 		currentUser && setUser(currentUser);
 	});
+	useEffect(() => {
+		async function loadPage() {
+			const singleUser = await getSingleUser(user.uid);
+			setUserData(singleUser);
+		}
+		user.uid && loadPage();
+	}, [setUserData, user.uid]);
+
 	return (
 		<div>
 			<BrowserRouter>

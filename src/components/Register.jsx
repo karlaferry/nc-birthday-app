@@ -6,47 +6,61 @@ import { UserContext } from "../Contexts/User";
 import { postUser } from "../utils/dbCalls";
 
 export default function Register() {
-  const [registerEmail, setRegisterEmail] = useState("");
-  const [registerPassword, setRegisterPassword] = useState("");
-  const { user } = useContext(UserContext);
-  const navigate = useNavigate();
-  console.log(user.email);
+	const [registerEmail, setRegisterEmail] = useState("");
+	const [registerPassword, setRegisterPassword] = useState("");
+	const [firstName, setFirstName] = useState("");
+	const [birthdate, setBirthdate] = useState("");
+	const { user } = useContext(UserContext);
+	const navigate = useNavigate();
 
-  const handleEmail = (e) => {
-    setRegisterEmail(e.target.value);
-  };
-  const handlePassword = (e) => {
-    setRegisterPassword(e.target.value);
-  };
+	const handleEmail = (e) => {
+		setRegisterEmail(e.target.value);
+	};
+	const handlePassword = (e) => {
+		setRegisterPassword(e.target.value);
+	};
 
-  const register = async (e) => {
-    try {
-      e.preventDefault();
-      await createUserWithEmailAndPassword(
-        auth,
-        registerEmail,
-        registerPassword
-      );
-      await postUser(auth.currentUser.uid);
-      navigate("/dashboard");
-    } catch (e) {
-      console.log(e);
-    }
-  };
+	const handleFirstName = (e) => {
+		setFirstName(e.target.value);
+	};
 
-  return (
-    <div>
-      <h1>Register</h1>
-      <form>
-        <input type="email" placeholder="E-mail" onChange={handleEmail} />
-        <input
-          type="password"
-          placeholder="Password"
-          onChange={handlePassword}
-        />
-        <button onClick={register}>Sign Up</button>
-      </form>
-      {user && <h2>{user.email}</h2>}
-    </div>
-  );
+	const handleBirthdate = (e) => {
+		const date = e.target.value.split("-");
+		const formattedDate = `${date[2]}/${date[1]}/${date[0]}`;
+		setBirthdate(formattedDate);
+	};
+
+	const register = async (e) => {
+		try {
+			e.preventDefault();
+			await createUserWithEmailAndPassword(
+				auth,
+				registerEmail,
+				registerPassword
+			);
+			await postUser(auth.currentUser.uid, firstName, birthdate);
+			navigate("/dashboard");
+		} catch (e) {
+			console.log(e);
+		}
+	};
+
+	return (
+		<div>
+			<h1>Register</h1>
+			<form>
+				<input type="email" placeholder="E-mail" onChange={handleEmail} />
+				<input
+					type="password"
+					placeholder="Password"
+					onChange={handlePassword}
+				/>
+				<input placeholder="First Name" onChange={handleFirstName} />
+				<label>Birthdate:</label>
+				<input type="date" name="birthdate" onChange={handleBirthdate} />
+				<button onClick={register}>Sign Up</button>
+			</form>
+			{user && <h2>{user.email}</h2>}
+		</div>
+	);
 }

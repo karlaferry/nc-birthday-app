@@ -1,13 +1,13 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { UserContext } from "../Contexts/User";
 
 export default function Dashboard() {
-	const { user } = useContext(UserContext);
+	const { userData } = useContext(UserContext);
 
 	return (
 		<div>
 			<h2>Dashboard</h2>
-			<h3>Welcome, {user.email}</h3>
+			{userData.first_name && <h3>Welcome, {userData.first_name}!</h3>}
 		</div>
 	);
 }
