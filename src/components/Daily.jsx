@@ -20,8 +20,6 @@ export default function Daily() {
 			<h2>Happy birthday to:</h2>
 			{isLoading ? (
 				<p>Loading...</p>
-			) : dailyCelebs.length < 2 ? (
-				<SingleDailyCelebrant dailyCeleb={dailyCelebs[0]} />
 			) : (
 				dailyCelebs.map((dailyCeleb) => {
 					return (
