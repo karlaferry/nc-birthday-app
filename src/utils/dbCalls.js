@@ -1,5 +1,5 @@
+import { database } from "../firebase";
 import { ref, child, get, set } from "firebase/database";
-import { database } from "../firebase/firebaseConfig";
 import { getMonthNum, getDay } from "./helperFuncs";
 
 export const getUsers = () => {

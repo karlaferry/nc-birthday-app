@@ -8,7 +8,7 @@ import Dashboard from "./components/Dashboard";
 import CelebrantCard from "./components/CelebrantCard";
 import { UserContext } from "./Contexts/User";
 import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "./firebase/firebaseConfig";
+import { auth } from "./firebase";
 import { getSingleUser } from "./utils/dbCalls";
 
 function App() {
