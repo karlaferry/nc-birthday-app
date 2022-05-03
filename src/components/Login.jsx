@@ -1,15 +1,13 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase/firebaseConfig";
-import { UserContext } from "../Contexts/User";
 import { extractErrorMsg } from "../utils/helperFuncs";
 
 export default function Login() {
 	const [logInEmail, setLogInEmail] = useState("");
 	const [logInPassword, setLogInPassword] = useState("");
 	const [errorMsg, setErrorMsg] = useState("");
-	const { user } = useContext(UserContext);
 	const navigate = useNavigate();
 
 	const handleEmail = (e) => {

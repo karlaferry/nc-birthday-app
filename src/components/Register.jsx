@@ -1,8 +1,7 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase/firebaseConfig";
-import { UserContext } from "../Contexts/User";
 import { postUser } from "../utils/dbCalls";
 import { extractErrorMsg } from "../utils/helperFuncs";
 
@@ -12,7 +11,6 @@ export default function Register() {
 	const [firstName, setFirstName] = useState("");
 	const [birthdate, setBirthdate] = useState("");
 	const [errorMsg, setErrorMsg] = useState("");
-	const { user } = useContext(UserContext);
 	const navigate = useNavigate();
 
 	const handleEmail = (e) => {
