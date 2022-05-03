@@ -42,8 +42,7 @@ export default function Login() {
 				/>
 				<button onClick={logIn}>Login</button>
 			</form>
-			{user && <h2>{user.email}</h2>}
-			{errorMsg && <h3>{errorMsg}</h3>}
+			{errorMsg && <p>{errorMsg}</p>}
 		</div>
 	);
 }
