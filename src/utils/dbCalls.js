@@ -23,6 +23,7 @@ export const postUser = (userId, firstName, birthdate) => {
 			"https://firebasestorage.googleapis.com/v0/b/nc-birthday-app.appspot.com/o/user.png?alt=media&token=b6322e5d-7b78-4caf-884d-5aa63712a558",
 		first_name: firstName,
 		birth_date: birthdate,
+		id: userId,
 	};
 	set(postUserDb, newUser);
 };
