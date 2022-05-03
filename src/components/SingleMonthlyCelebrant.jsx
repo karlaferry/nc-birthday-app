@@ -4,7 +4,11 @@ export default function SingleMonthlyCelebrant({ monthlyCeleb }) {
 	return (
 		<div>
 			<h3>{monthlyCeleb.birth_date.split("/")[0]}</h3>
-			<img src={`${monthlyCeleb.avatar_url}`} alt="monthly celebrant avatar" />
+			<img
+				src={`${monthlyCeleb.avatar_url}`}
+				alt="monthly celebrant avatar"
+				width="100"
+			/>
 			<p>{monthlyCeleb.first_name}</p>
 		</div>
 	);
