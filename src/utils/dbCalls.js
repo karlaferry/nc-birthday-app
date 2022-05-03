@@ -1,13 +1,4 @@
-import {
-	ref,
-	child,
-	get,
-	push,
-	set,
-	update,
-	query,
-	orderByKey,
-} from "firebase/database";
+import { ref, child, get, set } from "firebase/database";
 import { database } from "../firebase/firebaseConfig";
 import { getMonthNum, getDay } from "./helperFuncs";
 
@@ -18,22 +9,25 @@ export const getUsers = () => {
 	});
 };
 
-// export const getSingleUser = (id) => {
-// 	const usersDb = ref(database)
-// 	return get(
-//     query(ref(usersDb, `/users/` + userId + "/water"), orderByKey())
-//   )
-// }
+export const getSingleUser = (id) => {
+	const usersDb = ref(database);
+	return get(child(usersDb, `/users/` + id)).then((snapshot) => {
+		return snapshot.val();
+	});
+};
 
-export const postUser = (userId) => {
+export const postUser = (userId, firstName, birthdate) => {
 	const postUserDb = ref(database, "/users/" + userId);
 	const newUser = {
 		avatar_url:
 			"https://firebasestorage.googleapis.com/v0/b/nc-birthday-app.appspot.com/o/user.png?alt=media&token=b6322e5d-7b78-4caf-884d-5aa63712a558",
+		first_name: firstName,
+		birth_date: birthdate,
 	};
 	set(postUserDb, newUser);
 };
 
+// ignore these next two calls, haven't figured out how to query!
 export const getMonthlyCelebrants = async () => {
 	const users = await getUsers();
 	const monthlyCelebs = [];
