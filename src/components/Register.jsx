@@ -4,12 +4,14 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase/firebaseConfig";
 import { UserContext } from "../Contexts/User";
 import { postUser } from "../utils/dbCalls";
+import { extractErrorMsg } from "../utils/helperFuncs";
 
 export default function Register() {
 	const [registerEmail, setRegisterEmail] = useState("");
 	const [registerPassword, setRegisterPassword] = useState("");
 	const [firstName, setFirstName] = useState("");
 	const [birthdate, setBirthdate] = useState("");
+	const [errorMsg, setErrorMsg] = useState("");
 	const { user } = useContext(UserContext);
 	const navigate = useNavigate();
 
@@ -41,6 +43,7 @@ export default function Register() {
 			await postUser(auth.currentUser.uid, firstName, birthdate);
 			navigate("/dashboard");
 		} catch (e) {
+			setErrorMsg(extractErrorMsg(e.code));
 			console.log(e);
 		}
 	};
@@ -60,7 +63,7 @@ export default function Register() {
 				<input type="date" name="birthdate" onChange={handleBirthdate} />
 				<button onClick={register}>Sign Up</button>
 			</form>
-			{user && <h2>{user.email}</h2>}
+			{errorMsg && <p>{errorMsg}</p>}
 		</div>
 	);
 }
