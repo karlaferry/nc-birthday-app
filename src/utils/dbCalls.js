@@ -3,18 +3,16 @@ import { ref, child, get, set, update } from "firebase/database";
 import { getMonthNum, getDay } from "./helperFuncs";
 import { getDownloadURL, ref as sRef } from "firebase/storage";
 
-export const getUsers = () => {
+export const getUsers = async () => {
   const usersDb = ref(database);
-  return get(child(usersDb, `/users`)).then((snapshot) => {
-    return snapshot.val();
-  });
+  const snapshot = await get(child(usersDb, `/users`));
+  return snapshot.val();
 };
 
-export const getSingleUser = (id) => {
+export const getSingleUser = async (userId) => {
   const usersDb = ref(database);
-  return get(child(usersDb, `/users/` + id)).then((snapshot) => {
-    return snapshot.val();
-  });
+  const snapshot = await get(child(usersDb, `/users/` + userId));
+  return snapshot.val();
 };
 
 export const postUser = (userId, firstName, birthdate) => {
