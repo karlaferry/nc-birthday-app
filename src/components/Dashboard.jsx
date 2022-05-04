@@ -28,6 +28,7 @@ export default function Dashboard() {
   const handleDelete = async () => {
     await deleteAccount(user.uid);
     alert("Sorry to see you go!");
+    window.location.reload();
   };
 
   return (
