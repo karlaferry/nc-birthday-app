@@ -1,1 +1,3 @@
-# NC Birthday App 🚧 Work in Progress 🚧
+# 🎉 NC Birthday App
+
+## 🚧 Work in Progress 🚧
