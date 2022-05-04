@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
 import { postUser } from "../utils/dbCalls";
-import { extractErrorMsg } from "../utils/helperFuncs";
+import { extractErrorMsg, removeZero } from "../utils/helperFuncs";
 
 export default function Register() {
 	const [registerEmail, setRegisterEmail] = useState("");
@@ -25,7 +25,7 @@ export default function Register() {
 	};
 
 	const handleBirthdate = (e) => {
-		const date = e.target.value.split("-");
+		const date = e.target.value.split("-").map(day => removeZero(day))
 		const formattedDate = `${date[2]}/${date[1]}/${date[0]}`;
 		setBirthdate(formattedDate);
 	};

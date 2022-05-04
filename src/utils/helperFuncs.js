@@ -46,3 +46,10 @@ exports.extractErrorMsg = (str) => {
 	const errorMsg = splitMsg.join(" ").toUpperCase() + ".";
 	return errorMsg;
 };
+
+exports.removeZero = (str) => {
+	if (str[0] === "0"){
+		return str[1]
+	} 
+	return str
+}
