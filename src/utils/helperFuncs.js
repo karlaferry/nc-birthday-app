@@ -29,8 +29,8 @@ exports.getDay = () => {
 
 exports.sortBirthdays = (array) => {
   return array.sort((a, b) => {
-    const previousBirthday = +a.birth_date.split("/")[0];
-    const currentBirthday = +b.birth_date.split("/")[0];
+    const previousBirthday = +a.birth_date.day;
+    const currentBirthday = +b.birth_date.day;
     let comparison = 0;
     if (previousBirthday > currentBirthday) {
       comparison = 1;
@@ -54,5 +54,6 @@ exports.formatDate = (dateStr) => {
     }
     return day;
   });
-  return `${date[2]}/${date[1]}/${date[0]}`;
+  // return `${date[2]}/${date[1]}/${date[0]}`;
+  return { day: +date[2], month: +date[1], year: +date[0] };
 };

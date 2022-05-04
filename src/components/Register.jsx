@@ -25,6 +25,7 @@ export default function Register() {
   };
 
   const handleBirthdate = (e) => {
+    console.log(formatDate(e.target.value));
     setBirthdate(formatDate(e.target.value));
   };
 
