@@ -1,6 +1,15 @@
 import { database, storage, auth } from "../firebase";
 import { deleteUser } from "firebase/auth";
-import { ref, child, get, set, update } from "firebase/database";
+import {
+  ref,
+  child,
+  get,
+  set,
+  update,
+  query,
+  orderByChild,
+  equalTo,
+} from "firebase/database";
 import { getDownloadURL, ref as sRef, deleteObject } from "firebase/storage";
 import { getMonthNum, getDay } from "./helperFuncs";
 
@@ -40,16 +49,16 @@ export const postUser = async (userId, firstName, birthdate) => {
   }
 };
 
-// ignore these next two calls, haven't figured out how to query!
 export const getMonthlyCelebrants = async () => {
   try {
-    const users = await getUsers();
-    const monthlyCelebs = [];
-    for (let user in users) {
-      const userMonth = +users[user]["birth_date"].split("/")[1];
-      userMonth === getMonthNum() && monthlyCelebs.push(users[user]);
-    }
-    return monthlyCelebs;
+    const monthlyCelebrants = await get(
+      query(
+        ref(database, "users"),
+        orderByChild("/birth_date/month"),
+        equalTo(getMonthNum())
+      )
+    );
+    return monthlyCelebrants.val();
   } catch (e) {
     console.log(e);
   }
@@ -57,13 +66,14 @@ export const getMonthlyCelebrants = async () => {
 
 export const getDailyCelebrants = async () => {
   try {
-    const users = await getUsers();
-    const dailyCelebs = [];
-    for (let user in users) {
-      users[user].birth_date.startsWith(`${getDay()}/${getMonthNum()}`) &&
-        dailyCelebs.push(users[user]);
-    }
-    return dailyCelebs;
+    const dailyCelebrants = await get(
+      query(
+        ref(database, "users"),
+        orderByChild("/birth_date/day"),
+        equalTo(getDay())
+      )
+    );
+    return dailyCelebrants.val();
   } catch (e) {
     console.log(e);
   }
