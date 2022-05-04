@@ -1,7 +1,8 @@
-import { database, storage } from "../firebase";
+import { database, storage, auth } from "../firebase";
+import { deleteUser } from "firebase/auth";
 import { ref, child, get, set, update } from "firebase/database";
-import { getMonthNum, getDay } from "./helperFuncs";
 import { getDownloadURL, ref as sRef } from "firebase/storage";
+import { getMonthNum, getDay } from "./helperFuncs";
 
 export const getUsers = async () => {
   const usersDb = ref(database);
@@ -56,4 +57,11 @@ export const patchUserAvatar = async (userId) => {
   await update(usersRef, {
     avatar_url: url,
   });
+};
+
+export const deleteAccount = async (userId) => {
+  const dbRef = ref(database);
+  const usersRef = child(dbRef, `/users/` + userId);
+  await set(usersRef, null);
+  await deleteUser(auth.currentUser);
 };

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { storage } from "../firebase";
 import { ref, uploadBytes } from "firebase/storage";
 import { UserContext } from "../Contexts/User";
-import { patchUserAvatar } from "../utils/dbCalls";
+import { deleteAccount, patchUserAvatar } from "../utils/dbCalls";
 
 export default function Dashboard() {
   const { user, isLoggedIn, userData } = useContext(UserContext);
@@ -25,6 +25,11 @@ export default function Dashboard() {
     window.location.reload();
   };
 
+  const handleDelete = async () => {
+    await deleteAccount(user.uid);
+    alert("Sorry to see you go!");
+  };
+
   return (
     <div>
       {isLoggedIn === true ? (
@@ -43,6 +48,9 @@ export default function Dashboard() {
           <br />
           <button onClick={() => navigate(`/celebrant/${user.uid}`)}>
             My Birthday Page
+          </button>
+          <button onClick={handleDelete} href="/">
+            Delete Account
           </button>
         </>
       ) : (
