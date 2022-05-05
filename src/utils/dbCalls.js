@@ -105,3 +105,32 @@ export const deleteAccount = async (userId) => {
     console.log(e);
   }
 };
+
+export const postGreeting = async (authorId, emoji, message, celebId) => {
+  try {
+    const timestamp = Date.now();
+    const greetingRef = ref(database, "/greetings/" + authorId + timestamp);
+    const newGreeting = {
+      authorId,
+      timestamp,
+      emoji,
+      message,
+      celebId,
+    };
+    await set(greetingRef, newGreeting);
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const getGreetings = async (celebId) => {
+  try {
+    const greetings = await get(
+      query(ref(database, "greetings"), orderByChild("celebId")),
+      equalTo(`${celebId}`)
+    );
+    return greetings.val();
+  } catch (e) {
+    console.log(e);
+  }
+};
