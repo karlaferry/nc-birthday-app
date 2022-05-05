@@ -25,6 +25,7 @@ export default function MessageField() {
       <h3>Pick Your Emoji:</h3>
       <Picker onEmojiClick={onEmojiClick} disableAutoFocus={true} />
       <p>{emoji && emoji.emoji}</p>
+      <h3>Your Message</h3>
       <form onSubmit={handleSubmit}>
         <textarea
           placeholder="Make them smile!"
