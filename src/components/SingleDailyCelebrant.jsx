@@ -1,17 +1,19 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function SingleDailyCelebrant({ dailyCeleb }) {
+  const navigate = useNavigate();
   return (
-    <Link to={`/celebrant/${dailyCeleb.id}`}>
-      <div>
-        <img
-          src={`${dailyCeleb.avatar_url}`}
-          alt="celebrant avatar"
-          width="100"
-        />
-        <h3>{dailyCeleb.first_name}</h3>
-      </div>
-    </Link>
+    <div>
+      <img
+        src={`${dailyCeleb.avatar_url}`}
+        alt="celebrant avatar"
+        width="100"
+      />
+      <h3>{dailyCeleb.first_name}</h3>
+      <button onClick={() => navigate(`/celebrant/${dailyCeleb.id}`)}>
+        Send Anon Greeting
+      </button>
+    </div>
   );
 }
