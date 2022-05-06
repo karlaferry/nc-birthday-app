@@ -1,15 +1,6 @@
 import { database, storage, auth } from "../firebase";
 import { deleteUser } from "firebase/auth";
-import {
-	ref,
-	child,
-	get,
-	set,
-	update,
-	query,
-	orderByChild,
-	equalTo,
-} from "firebase/database";
+import { ref, child, get, set, update, query, orderByChild, equalTo } from "firebase/database";
 import { getDownloadURL, ref as sRef, deleteObject } from "firebase/storage";
 import { getMonthNum, getDay } from "./helperFuncs";
 
@@ -52,11 +43,7 @@ export const postUser = async (userId, firstName, birthdate) => {
 export const getMonthlyCelebrants = async () => {
 	try {
 		const monthlyCelebrants = await get(
-			query(
-				ref(database, "users"),
-				orderByChild("/birth_date/month"),
-				equalTo(getMonthNum())
-			)
+			query(ref(database, "users"), orderByChild("/birth_date/month"), equalTo(getMonthNum()))
 		);
 		return monthlyCelebrants.val();
 	} catch (e) {
@@ -67,11 +54,7 @@ export const getMonthlyCelebrants = async () => {
 export const getDailyCelebrants = async () => {
 	try {
 		const dailyCelebrants = await get(
-			query(
-				ref(database, "users"),
-				orderByChild("/birth_date/day"),
-				equalTo(getDay())
-			)
+			query(ref(database, "users"), orderByChild("/birth_date/day"), equalTo(getDay()))
 		);
 		return dailyCelebrants.val();
 	} catch (e) {
@@ -106,9 +89,8 @@ export const deleteAccount = async (userId) => {
 	}
 };
 
-export const postGreeting = async (authorId, emoji, message, celebId) => {
+export const postGreeting = async (authorId, emoji, message, celebId, timestamp) => {
 	try {
-		const timestamp = Date.now();
 		const greetingRef = ref(database, "/greetings/" + authorId + timestamp);
 		const newGreeting = {
 			authorId,
@@ -126,13 +108,30 @@ export const postGreeting = async (authorId, emoji, message, celebId) => {
 export const getGreetings = async (celebId) => {
 	try {
 		const greetings = await get(
-			query(
-				ref(database, "greetings"),
-				orderByChild("celebId"),
-				equalTo(`${celebId}`)
-			)
+			query(ref(database, "greetings"), orderByChild("celebId"), equalTo(`${celebId}`))
 		);
 		return greetings.val();
+	} catch (e) {
+		console.log(e);
+	}
+};
+
+export const getSentGreetings = async (authorId) => {
+	try {
+		const greetings = await get(
+			query(ref(database, "greetings"), orderByChild("authorId"), equalTo(`${authorId}`))
+		);
+		return greetings.val();
+	} catch (e) {
+		console.log(e);
+	}
+};
+
+export const deleteGreeting = async (authorId, timestamp) => {
+	try {
+		const dbRef = ref(database);
+		const greetingsRef = child(dbRef, `/greetings/${authorId + timestamp}`);
+		await set(greetingsRef, null);
 	} catch (e) {
 		console.log(e);
 	}
