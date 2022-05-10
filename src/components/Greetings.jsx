@@ -23,7 +23,6 @@ export default function Greetings({ id, celebGreetings, setCelebGreetings }) {
     setIsLoading(false);
   }, [id, setCelebGreetings]);
 
-  console.log(celebGreetings);
   const showGreetings = () => {
     if (!isLoggedIn) {
       return null;
@@ -38,11 +37,16 @@ export default function Greetings({ id, celebGreetings, setCelebGreetings }) {
   };
 
   return (
-    <div>
-      {isLoggedIn && (
-        <h2>{user.uid === id ? "Your Greetings" : "Greetings"}</h2>
+    <>
+      {user.emailVerified && (
+        <div>
+          ,
+          {isLoggedIn && (
+            <h2>{user.uid === id ? "Your Greetings" : "Greetings"}</h2>
+          )}
+          ,{showGreetings()}
+        </div>
       )}
-      {showGreetings()}
-    </div>
+    </>
   );
 }

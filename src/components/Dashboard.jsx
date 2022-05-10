@@ -16,6 +16,7 @@ export default function Dashboard() {
   const [avatar, setAvatar] = useState(null);
   const [sentGreetings, setSentGreetings] = useState([]);
   const navigate = useNavigate();
+  // console.log(user.emailVerified);
 
   useEffect(() => {
     async function loadPage() {
