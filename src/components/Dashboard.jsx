@@ -16,6 +16,7 @@ export default function Dashboard() {
   const [avatar, setAvatar] = useState(null);
   const [sentGreetings, setSentGreetings] = useState([]);
   const navigate = useNavigate();
+  // console.log(user.emailVerified);
 
   useEffect(() => {
     async function loadPage() {
@@ -52,26 +53,27 @@ export default function Dashboard() {
     window.location.reload();
   };
 
+  const handleDeleteGreeting = async (timestamp) => {
+    // const commentId = user.uid + timestamp;
+    // setSentGreetings((curr) => {
+    //   const arr = [];
+    //   for (let greet of curr) {
+    //     if (curr[greet].timestamp !== commentId) {
+    //       arr.push(curr[greet]);
+    //     }
+    //   }
+    //   return arr;
+    // });
+    await deleteGreeting(user.uid, timestamp);
+    alert("Greeting deleted!");
+  };
+
   const displayGreetings = () => {
     return sentGreetings.length > 0 ? (
       sentGreetings.map((greeting) => {
         const { day, month, year, hours, minutes } = convertDate(
           greeting.timestamp
         );
-        // FIX DELETE GREETING
-        const handleDeleteGreeting = async () => {
-          // setSentGreetings((curr) => {
-          // 	const arr = [];
-          // 	for (let greet of curr) {
-          // 		if (curr[greet].timestamp !== greeting.timestamp) {
-          // 			arr.push(curr[greet]);
-          // 		}
-          // 	}
-          // 	return arr;
-          // });
-          await deleteGreeting(user.uid, greeting.timestamp);
-          alert("Greeting deleted!");
-        };
         return (
           <React.Fragment key={greeting.timestamp}>
             <p>
@@ -82,7 +84,12 @@ export default function Dashboard() {
                 {day}-{month}-{year} | {hours}:{minutes}
               </p>
             </Link>
-            <button onClick={handleDeleteGreeting}>🗑</button>
+            <form
+              action="/dashboard"
+              onSubmit={() => handleDeleteGreeting(greeting.timestamp)}
+            >
+              <button>🗑</button>
+            </form>
           </React.Fragment>
         );
       })
@@ -95,28 +102,34 @@ export default function Dashboard() {
     <div>
       {isLoggedIn === true ? (
         <>
+          {/* DASHBOARD */}
           <h2>Dashboard</h2>
           <h3>Welcome, {userData.first_name}!</h3>
+          {/* ACCOUNT INFO */}
           <h2>Account Info</h2>
           <img src={`${userData.avatar_url}`} alt="user default" />
           <p>Name: {userData.first_name}</p>
           <p>Email: {user.email}</p>
+          {/* UPLOAD NEW AVATAR */}
           <form onSubmit={handleUpload}>
             <label>Change Avatar:</label>
             <input type="file" accept="image/*" onChange={handleFile} />
             <button>Upload</button>
           </form>
           <br />
+          {/* GO TO USER BIRTHDAY PAGE */}
           <button onClick={() => navigate(`/celebrant/${user.uid}`)}>
             My Birthday Page
           </button>
+          {/* SENT GREETINGS */}
           <h2>Sent Greetings</h2>
           {displayGreetings()}
+          {/* DELETE ACCOUNT */}
           <h2>Delete Account</h2>
           <p>Your account information and data will be wiped.</p>
-          <button onClick={handleDelete} href="/">
-            Delete Account
-          </button>
+          <form action="/">
+            <button onClick={handleDelete}>Delete Account</button>
+          </form>
         </>
       ) : (
         <p>Please login or register.</p>
