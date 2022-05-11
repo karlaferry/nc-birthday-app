@@ -28,7 +28,13 @@ export default function Greetings({ id, celebGreetings, setCelebGreetings }) {
       return null;
     } else if (!isLoading && celebGreetings.length > 0) {
       return celebGreetings.map((greeting) => {
-        return <GreetingCard greeting={greeting} key={greeting.timestamp} />;
+        return (
+          <GreetingCard
+            greeting={greeting}
+            key={greeting.timestamp}
+            setCelebGreetings={setCelebGreetings}
+          />
+        );
       });
     } else if (user.uid === id) {
       return <p>Sorry! No greetings yet. 🥺</p>;

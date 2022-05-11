@@ -55,16 +55,14 @@ export default function Dashboard() {
   };
 
   const handleDeleteGreeting = async (timestamp) => {
-    // const commentId = user.uid + timestamp;
-    // setSentGreetings((curr) => {
-    //   const arr = [];
-    //   for (let greet of curr) {
-    //     if (curr[greet].timestamp !== commentId) {
-    //       arr.push(curr[greet]);
-    //     }
-    //   }
-    //   return arr;
-    // });
+    const commentId = user.uid + timestamp;
+    setSentGreetings((curr) => {
+      const arr = curr.filter((message) => {
+        const id = message.authorId + message.timestamp;
+        return id !== commentId;
+      });
+      return arr;
+    });
     await deleteGreeting(user.uid, timestamp);
     alert("Greeting deleted!");
   };
@@ -87,7 +85,10 @@ export default function Dashboard() {
             </Link>
             <form
               action="/dashboard"
-              onSubmit={() => handleDeleteGreeting(greeting.timestamp)}
+              onSubmit={(e) => {
+                e.preventDefault();
+                handleDeleteGreeting(greeting.timestamp);
+              }}
             >
               <button>🗑</button>
             </form>
