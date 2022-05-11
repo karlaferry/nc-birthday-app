@@ -6,8 +6,7 @@ import {
 } from "firebase/auth";
 import { auth } from "../firebase";
 import { postUser } from "../utils/dbCalls";
-import { extractErrorMsg, formatDate } from "../utils/helperFuncs";
-// import { UserContext } from "../Contexts/User";
+import { extractErrorMsg, formatDate, validEmail } from "../utils/helperFuncs";
 
 export default function Register() {
   const [registerEmail, setRegisterEmail] = useState("");
@@ -15,7 +14,6 @@ export default function Register() {
   const [firstName, setFirstName] = useState("");
   const [birthdate, setBirthdate] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
-  // const { user } = useContext(UserContext);
   const navigate = useNavigate();
 
   const handleEmail = (e) => {
@@ -30,7 +28,6 @@ export default function Register() {
   };
 
   const handleBirthdate = (e) => {
-    console.log(formatDate(e.target.value));
     setBirthdate(formatDate(e.target.value));
   };
 
@@ -39,6 +36,8 @@ export default function Register() {
       e.preventDefault();
       if (!firstName || !registerPassword || !birthdate) {
         setErrorMsg("PLEASE FILL OUT ALL FIELDS.");
+      } else if (!validEmail(registerEmail)) {
+        setErrorMsg("AUTHORIZED USERS ONLY.");
       } else {
         await createUserWithEmailAndPassword(
           auth,

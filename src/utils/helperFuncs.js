@@ -68,3 +68,8 @@ exports.convertDate = (date) => {
   };
   return dateObj;
 };
+
+exports.validEmail = (email) => {
+  const domain = email.split("@")[1];
+  return domain === "northcoders.com" ? true : false;
+};
