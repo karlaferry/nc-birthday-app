@@ -9,7 +9,6 @@ export default function Login() {
   const [logInPassword, setLogInPassword] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
   const navigate = useNavigate();
-  console.log(auth.currentUser);
 
   const handleEmail = (e) => {
     setLogInEmail(e.target.value);
