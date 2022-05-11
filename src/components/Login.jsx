@@ -20,7 +20,6 @@ export default function Login() {
   const logIn = async (e) => {
     try {
       await signInWithEmailAndPassword(auth, logInEmail, logInPassword);
-      // navigate("/dashboard");
     } catch (e) {
       setErrorMsg(extractErrorMsg(e.code));
       console.log(e);
