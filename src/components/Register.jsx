@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  sendEmailVerification,
+} from "firebase/auth";
 import { auth } from "../firebase";
 import { postUser } from "../utils/dbCalls";
 import { extractErrorMsg, formatDate } from "../utils/helperFuncs";
+// import { UserContext } from "../Contexts/User";
 
 export default function Register() {
   const [registerEmail, setRegisterEmail] = useState("");
@@ -11,6 +15,7 @@ export default function Register() {
   const [firstName, setFirstName] = useState("");
   const [birthdate, setBirthdate] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
+  // const { user } = useContext(UserContext);
   const navigate = useNavigate();
 
   const handleEmail = (e) => {
@@ -32,13 +37,18 @@ export default function Register() {
   const register = async (e) => {
     try {
       e.preventDefault();
-      await createUserWithEmailAndPassword(
-        auth,
-        registerEmail,
-        registerPassword
-      );
-      await postUser(auth.currentUser.uid, firstName, birthdate);
-      navigate("/dashboard");
+      if (!firstName || !registerPassword || !birthdate) {
+        setErrorMsg("PLEASE FILL OUT ALL FIELDS.");
+      } else {
+        await createUserWithEmailAndPassword(
+          auth,
+          registerEmail,
+          registerPassword
+        );
+        await postUser(auth.currentUser.uid, firstName, birthdate);
+        await sendEmailVerification(auth.currentUser);
+        navigate("/verify");
+      }
     } catch (e) {
       setErrorMsg(extractErrorMsg(e.code));
       console.log(e);

@@ -6,6 +6,8 @@ import Register from "./components/Register";
 import Login from "./components/Login";
 import Dashboard from "./components/Dashboard";
 import CelebrantPage from "./components/CelebrantPage";
+import VerifyEmail from "./components/VerifyEmail";
+import NotFound from "./components/NotFound";
 import { UserContext } from "./Contexts/User";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase";
@@ -14,7 +16,11 @@ import { getSingleUser } from "./utils/dbCalls";
 function App() {
   const { user, setUser, setUserData } = useContext(UserContext);
   onAuthStateChanged(auth, (currentUser) => {
-    currentUser && setUser(currentUser);
+    if (currentUser) {
+      if (currentUser.emailVerified === true) {
+        currentUser && setUser(currentUser);
+      }
+    }
   });
   useEffect(() => {
     async function loadPage() {
@@ -32,8 +38,10 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/verify" element={<VerifyEmail />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/celebrant/:id" element={<CelebrantPage />} />
+          <Route path="/*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </div>

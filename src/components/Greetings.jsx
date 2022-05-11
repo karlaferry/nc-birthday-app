@@ -40,11 +40,10 @@ export default function Greetings({ id, celebGreetings, setCelebGreetings }) {
     <>
       {user.emailVerified && (
         <div>
-          ,
           {isLoggedIn && (
             <h2>{user.uid === id ? "Your Greetings" : "Greetings"}</h2>
           )}
-          ,{showGreetings()}
+          {showGreetings()}
         </div>
       )}
     </>
