@@ -9,6 +9,7 @@ export default function Login() {
   const [logInPassword, setLogInPassword] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
   const navigate = useNavigate();
+  console.log(auth.currentUser);
 
   const handleEmail = (e) => {
     setLogInEmail(e.target.value);
@@ -19,7 +20,9 @@ export default function Login() {
 
   const logIn = async (e) => {
     try {
+      e.preventDefault();
       await signInWithEmailAndPassword(auth, logInEmail, logInPassword);
+      navigate("/dashboard");
     } catch (e) {
       setErrorMsg(extractErrorMsg(e.code));
       console.log(e);
@@ -29,14 +32,14 @@ export default function Login() {
   return (
     <div>
       <h1>Login</h1>
-      <form action="/dashboard">
+      <form onSubmit={logIn}>
         <input type="email" placeholder="E-mail" onChange={handleEmail} />
         <input
           type="password"
           placeholder="Password"
           onChange={handlePassword}
         />
-        <button onClick={logIn}>Login</button>
+        <button>Login</button>
       </form>
       {errorMsg && <p>{errorMsg}</p>}
     </div>

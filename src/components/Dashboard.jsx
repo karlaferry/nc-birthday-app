@@ -48,9 +48,10 @@ export default function Dashboard() {
   };
 
   const handleDelete = async () => {
-    await deleteAccount(user.uid);
-    alert("Sorry to see you go!");
-    window.location.reload();
+    if (window.confirm("Are you sure you want to delete your account?")) {
+      await deleteAccount(user.uid);
+      window.open("/", "_self");
+    }
   };
 
   const handleDeleteGreeting = async (timestamp) => {
@@ -127,9 +128,9 @@ export default function Dashboard() {
           {/* DELETE ACCOUNT */}
           <h2>Delete Account</h2>
           <p>Your account information and data will be wiped.</p>
-          <form action="/">
-            <button onClick={handleDelete}>Delete Account</button>
-          </form>
+          {/* <form> */}
+          <button onClick={handleDelete}>Delete Account</button>
+          {/* </form> */}
         </>
       ) : (
         <p>Please login or register.</p>

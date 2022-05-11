@@ -17,7 +17,7 @@ function App() {
   const { user, setUser, setUserData } = useContext(UserContext);
   onAuthStateChanged(auth, (currentUser) => {
     if (currentUser) {
-      if (currentUser.emailVerified === true) {
+      if (currentUser.emailVerified) {
         currentUser && setUser(currentUser);
       }
     }
