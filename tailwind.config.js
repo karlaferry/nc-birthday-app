@@ -1,7 +1,12 @@
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        varela: ["Varela Round", "sans-serif"],
+        opensans: ["Open Sans", "sans-serif"],
+      },
+    },
     colors: {
       primary1: "#E63946",
       primary2: "#F1FAEE",

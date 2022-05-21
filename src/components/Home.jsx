@@ -1,11 +1,12 @@
-import React, { useContext } from "react";
+import React from "react";
 import Monthly from "./Monthly";
 import Daily from "./Daily";
-import { UserContext } from "../Contexts/User";
+import Main from "./MainSvg";
 
 export default function Home() {
   return (
     <div>
+      <Main />
       <Monthly />
       <Daily />
     </div>

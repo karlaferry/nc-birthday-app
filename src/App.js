@@ -3,8 +3,6 @@ import { useContext, useEffect } from "react";
 import Header from "./components/Header";
 import Home from "./components/Home";
 import RegisterLogin from "./components/RegisterLogin";
-import About from "./components/About";
-import Contact from "./components/Contact";
 import Dashboard from "./components/Dashboard";
 import CelebrantPage from "./components/CelebrantPage";
 import VerifyEmail from "./components/VerifyEmail";
@@ -32,7 +30,7 @@ function App() {
   }, [setUserData, user.uid]);
 
   return (
-    <div>
+    <div className="bg-primary2">
       <BrowserRouter>
         <Header />
         <Routes>
@@ -41,8 +39,6 @@ function App() {
           <Route path="/verify" element={<VerifyEmail />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/celebrant/:id" element={<CelebrantPage />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
           <Route path="/*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
