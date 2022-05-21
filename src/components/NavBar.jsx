@@ -7,7 +7,7 @@ import { UserContext } from "../Contexts/User";
 export default function NavBar() {
   const { isLoggedIn } = useContext(UserContext);
   const buttons =
-    "bg-accent1 hover:bg-accent2 hover:text-primary2 font-varela font-bold text-accent2 text-lg py-3 px-16 min-w-full hover:border-blue-500 rounded-md lowercase m-1";
+    "bg-accent1 hover:bg-accent2 hover:text-primary2 font-varela font-bold text-accent2 text-lg py-3 px-16 my-2 min-w-full hover:border-blue-500 rounded-md lowercase m-1";
   return (
     <div className="flex flex-col items-center content-center">
       <ul>
