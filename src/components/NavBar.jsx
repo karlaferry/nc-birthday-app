@@ -19,7 +19,7 @@ export default function NavBar() {
         {!isLoggedIn && (
           <li>
             <Link to="/register-login">
-              <button className={buttons}>Register | Login</button>
+              <button className={buttons}>Login | Register</button>
             </Link>
           </li>
         )}
