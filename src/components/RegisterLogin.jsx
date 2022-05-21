@@ -5,8 +5,8 @@ import Register from "./Register";
 export default function RegisterLogin() {
   return (
     <div>
-      <Register />
       <Login />
+      <Register />
     </div>
   );
 }
