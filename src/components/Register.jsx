@@ -56,7 +56,7 @@ export default function Register() {
 
   return (
     <div>
-      <h1>Register</h1>
+      <h2>Register</h2>
       <form>
         <input type="email" placeholder="E-mail" onChange={handleEmail} />
         <input

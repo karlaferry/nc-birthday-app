@@ -3,7 +3,7 @@ import React from "react";
 export default function SingleMonthlyCelebrant({ monthlyCeleb }) {
   return (
     <div>
-      <h3>{monthlyCeleb.birth_date.day}</h3>
+      <h4>{monthlyCeleb.birth_date.day}</h4>
       <img
         src={`${monthlyCeleb.avatar_url}`}
         alt="monthly celebrant avatar"

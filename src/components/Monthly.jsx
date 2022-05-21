@@ -24,8 +24,8 @@ export default function Monthly() {
   }, []);
   return (
     <div>
-      <h1>{getMonthAndYear()}</h1>
-      <h2>This Month's Celebrants</h2>
+      <h2>{getMonthAndYear()}</h2>
+      <h3>This Month's Celebrants</h3>
       {isLoading ? (
         <p>Celebrants loading...</p>
       ) : (

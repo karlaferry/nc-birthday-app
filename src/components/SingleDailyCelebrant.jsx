@@ -12,7 +12,7 @@ export default function SingleDailyCelebrant({ dailyCeleb }) {
         alt="celebrant avatar"
         width="100"
       />
-      <h3>{dailyCeleb.first_name}</h3>
+      <h4>{dailyCeleb.first_name}</h4>
       <button
         onClick={() => navigate(`/celebrant/${dailyCeleb.id}`)}
         disabled={!user.emailVerified}

@@ -23,7 +23,7 @@ export default function Daily() {
   }, []);
   return (
     <div>
-      <h2>Today's Celebrants</h2>
+      <h3>Today's Celebrants</h3>
       {isLoading ? (
         <p>Loading...</p>
       ) : (
