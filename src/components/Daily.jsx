@@ -23,7 +23,12 @@ export default function Daily() {
   }, []);
   return (
     <div>
-      <h3>Today's Celebrants</h3>
+      <h2 className="text-3xl font-bold text-center px-4 uppercase text-primary3 font-varela">
+        Today
+      </h2>
+      <h3 className="text-l font-bold text-center px-4 mb-6 lowercase text-primary1 font-varela">
+        Daily Celebrants
+      </h3>
       {isLoading ? (
         <p>Loading...</p>
       ) : (
@@ -31,7 +36,7 @@ export default function Daily() {
           return (
             <SingleDailyCelebrant
               dailyCeleb={dailyCeleb}
-              key={`${dailyCeleb.id}`}
+              key={`daily${dailyCeleb.id}`}
             />
           );
         })
