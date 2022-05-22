@@ -2,7 +2,7 @@ import React from "react";
 
 export default function SingleMonthlyCelebrant({ monthlyCeleb }) {
   return (
-    <div className="w-5/12 border border-black border-solid">
+    <div className="mobile:w-5/12 laptop:w-16 border border-black border-solid">
       <h4>{monthlyCeleb.birth_date.day}</h4>
       <img
         src={`${monthlyCeleb.avatar_url}`}
