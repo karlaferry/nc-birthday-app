@@ -7,8 +7,8 @@ export default function Home() {
   return (
     <div>
       <Main />
-      <Monthly />
       <Daily />
+      <Monthly />
     </div>
   );
 }
