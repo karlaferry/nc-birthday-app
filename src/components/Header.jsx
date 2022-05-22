@@ -5,9 +5,9 @@ export default function Header() {
   const headerContainer = `
   flex 
   mobile:flex-col 
+  mobile:justify-center
   laptop:flex-row
   flex-grow
-  justify-evenly
   `;
 
   const headerStyle = `
@@ -19,8 +19,8 @@ export default function Header() {
   mobile:text-4xl 
   mobile:px-4 
   mobile:pt-10 
-  laptop:text-5xl
-  laptop:pl-20
+  laptop:text-4xl
+  laptop:pl-16
   laptop:pt-20 
   laptop:w-full
   `;
