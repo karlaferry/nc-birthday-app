@@ -2,7 +2,7 @@ import React from "react";
 
 export default function SingleMonthlyCelebrant({ monthlyCeleb }) {
   return (
-    <div>
+    <div className="w-5/12 border border-black border-solid">
       <h4>{monthlyCeleb.birth_date.day}</h4>
       <img
         src={`${monthlyCeleb.avatar_url}`}
@@ -13,3 +13,5 @@ export default function SingleMonthlyCelebrant({ monthlyCeleb }) {
     </div>
   );
 }
+
+// mx-3 p-4.5

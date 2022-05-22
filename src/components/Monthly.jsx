@@ -33,14 +33,16 @@ export default function Monthly() {
       {isLoading ? (
         <p>Celebrants loading...</p>
       ) : (
-        monthlyCelebs.map((monthlyCeleb) => {
-          return (
-            <SingleMonthlyCelebrant
-              monthlyCeleb={monthlyCeleb}
-              key={`month${monthlyCeleb.id}`}
-            />
-          );
-        })
+        <div className="flex flex-wrap justify-evenly gap-y-2 m-auto min-w-full">
+          {monthlyCelebs.map((monthlyCeleb) => {
+            return (
+              <SingleMonthlyCelebrant
+                monthlyCeleb={monthlyCeleb}
+                key={`month${monthlyCeleb.id}`}
+              />
+            );
+          })}
+        </div>
       )}
     </div>
   );
