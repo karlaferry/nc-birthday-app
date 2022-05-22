@@ -15,8 +15,7 @@ module.exports = {
       accent2: "#457B9D",
     },
     screens: {
-      mobile: { min: "360px", max: "819px" },
-      tablet: { min: "820px", max: "1023px" },
+      mobile: { min: "360px", max: "1023px" },
       laptop: { min: "1024px" },
     },
   },

@@ -6,11 +6,39 @@ import { UserContext } from "../Contexts/User";
 
 export default function NavBar() {
   const { isLoggedIn } = useContext(UserContext);
-  const buttons =
-    "bg-accent1 hover:bg-accent2 hover:text-primary2 font-varela font-bold text-accent2 text-lg py-3 px-20 my-2 min-w-full hover:border-blue-500 rounded-md lowercase m-1";
+  const navContainer = `
+  flex 
+  flex-wrap 
+  mobile:flex-col
+  mobile:items-center 
+  `;
+  const menuContainer = `
+  flex 
+  mobile:flex-col
+  mobile:justify-center
+  tablet:flex-row
+  tablet:mt-10 
+  tablet:justify-end 
+  tablet:w-full
+  `;
+  const buttons = `
+  bg-accent1 
+  hover:bg-accent2 
+  hover:text-primary2 
+  font-varela 
+  font-bold 
+  text-accent2 
+  text-lg 
+  py-3 
+  mobile:px-20 
+  tablet:px-2 
+  my-2 
+  min-w-full 
+  rounded-md 
+  lowercase`;
   return (
-    <div className="flex flex-col items-center content-center">
-      <ul>
+    <div className={navContainer}>
+      <ul className={menuContainer}>
         <li>
           <Link to="/">
             <button className={buttons}>Home</button>
