@@ -8,7 +8,6 @@ export default function NavBar() {
   const { isLoggedIn } = useContext(UserContext);
   const navContainer = `
   flex 
-  flex-wrap 
   mobile:flex-col
   mobile:items-center 
   `;
@@ -16,10 +15,8 @@ export default function NavBar() {
   flex 
   mobile:flex-col
   mobile:justify-center
-  tablet:flex-row
-  tablet:mt-10 
-  tablet:justify-end 
-  tablet:w-full
+  laptop:mt-10
+  laptop:pr-20
   `;
   const buttons = `
   bg-accent1 
@@ -30,10 +27,13 @@ export default function NavBar() {
   text-accent2 
   text-lg 
   py-3 
+  mobile:my-2 
   mobile:px-20 
-  tablet:px-2 
-  my-2 
-  min-w-full 
+  mobile:w-full
+  laptop:px-16
+  laptop:mr-6
+  laptop:mt-8
+  laptop:whitespace-nowrap
   rounded-md 
   lowercase`;
   return (
