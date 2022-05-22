@@ -15,8 +15,8 @@ export default function NavBar() {
   flex 
   mobile:flex-col
   mobile:justify-center
-  laptop:mt-10
-  laptop:pr-20
+  laptop:mt-10 
+  laptop:pr-16
   `;
   const buttons = `
   bg-accent1 
@@ -31,10 +31,10 @@ export default function NavBar() {
   mobile:px-20 
   mobile:w-full
   laptop:px-16
-  laptop:mr-6
+  laptop:mr-4
   laptop:mt-8
-  laptop:whitespace-nowrap
   rounded-md 
+  laptop:whitespace-nowrap
   lowercase`;
   return (
     <div className={navContainer}>
