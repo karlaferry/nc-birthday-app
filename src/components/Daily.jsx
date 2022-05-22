@@ -21,14 +21,19 @@ export default function Daily() {
     }
     loadPage();
   }, []);
+
+  const dailyH3 =
+    "text-l font-bold text-center px-4 mb-6 lowercase text-primary1 font-varela";
   return (
     <div>
       <h2 className="text-3xl font-bold text-center px-4 uppercase text-primary3 font-varela">
         Today
       </h2>
-      <h3 className="text-l font-bold text-center px-4 mb-6 lowercase text-primary1 font-varela">
-        Daily Celebrants
-      </h3>
+      {dailyCelebs.length > 1 ? (
+        <h3 className={dailyH3}>Daily Celebrants</h3>
+      ) : (
+        <h3 className={dailyH3}>Daily Celebrant</h3>
+      )}
       {isLoading ? (
         <p>Loading...</p>
       ) : (
