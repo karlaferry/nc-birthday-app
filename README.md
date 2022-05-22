@@ -9,3 +9,14 @@ I have currently restricted this app for Northcoder employees use, hence a coupl
 The goal of building this app is for me to practice the implementation of Google Firebase services such as Authentication, Storage, and Realtime Database.
 
 ## 🚧 Work in Progress 🚧
+
+- ✅ Firebase Realtime Database setup
+- ✅ Firebase Authentication setup
+- ✅ Register and Login functionality
+- ✅ Writing on Database: post and delete user
+- ✅ Dashboard functionality
+- ✅ Reading Database: display data on home page
+- ✅ Firebase Storage setup + Change Avatar functionality
+- ✅ Writing on Database: post and delete greetings + install emoji npm package
+- ✅ Netlify Deployment
+- ⭕️ Styling
