@@ -11,20 +11,18 @@ export default function Header() {
   `;
 
   const headerStyle = `
-  mobile:text-4xl 
-  laptop:text-5xl
   font-bold 
-  text-center 
-  mobile:px-4 
   pb-6 
   uppercase 
   text-primary1 
   font-varela
-  w-full
+  mobile:text-4xl 
+  mobile:px-4 
   mobile:pt-10 
-  laptop:pl-14
-  laptop:pt-14 
-  laptop:text-left
+  laptop:text-5xl
+  laptop:pl-20
+  laptop:pt-20 
+  laptop:w-full
   `;
   return (
     <div className={headerContainer}>
