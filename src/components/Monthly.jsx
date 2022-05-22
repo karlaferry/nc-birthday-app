@@ -33,7 +33,7 @@ export default function Monthly() {
       {isLoading ? (
         <p>Celebrants loading...</p>
       ) : (
-        <div className="flex flex-wrap justify-evenly gap-y-2 m-auto min-w-full">
+        <div className="flex flex-wrap justify-evenly gap-y-6 m-auto min-w-full">
           {monthlyCelebs.map((monthlyCeleb) => {
             return (
               <SingleMonthlyCelebrant
