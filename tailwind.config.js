@@ -14,6 +14,11 @@ module.exports = {
       accent1: "#A8DADC",
       accent2: "#457B9D",
     },
+    screens: {
+      mobile: "360px",
+      tablet: "820px",
+      laptop: "1024px",
+    },
   },
   plugins: [],
 };
