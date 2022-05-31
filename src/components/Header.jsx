@@ -6,7 +6,7 @@ export default function Header() {
   flex 
   mobile:flex-col 
   mobile:justify-center
-  laptop:flex-row
+  flex-row
   flex-grow
   `;
 
@@ -19,10 +19,10 @@ export default function Header() {
   mobile:text-4xl 
   mobile:px-4 
   mobile:pt-10 
-  laptop:text-4xl
-  laptop:pl-16
-  laptop:pt-20 
-  laptop:w-full
+  text-4xl
+  pl-16
+  pt-20 
+  w-full
   `;
   return (
     <div className={headerContainer}>
