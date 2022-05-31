@@ -13,6 +13,7 @@ import { UserContext } from "./Contexts/User";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase";
 import { getSingleUser } from "./utils/dbCalls";
+import Footer from "./components/Footer";
 
 function App() {
   const { user, setUser, setUserData } = useContext(UserContext);
@@ -46,6 +47,7 @@ function App() {
           <Route path="/*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
+      <Footer />
     </div>
   );
 }
