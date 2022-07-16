@@ -6,12 +6,8 @@ export default function SingleDailyCelebrant({ dailyCeleb }) {
   const { user } = useContext(UserContext);
   const navigate = useNavigate();
   return (
-    <div>
-      <img
-        src={`${dailyCeleb.avatar_url}`}
-        alt="celebrant avatar"
-        width="100"
-      />
+    <div className="border border-black border-solid w-10/12 m-auto">
+      <img src={`${dailyCeleb.avatar_url}`} alt="celebrant avatar" />
       <h4>{dailyCeleb.first_name}</h4>
       <button
         onClick={() => navigate(`/celebrant/${dailyCeleb.id}`)}

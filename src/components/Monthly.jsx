@@ -24,19 +24,25 @@ export default function Monthly() {
   }, []);
   return (
     <div>
-      <h2>{getMonthAndYear()}</h2>
-      <h3>This Month's Celebrants</h3>
+      <h2 className="text-3xl font-bold text-center mt-6 px-4 uppercase text-primary3 font-varela">
+        {getMonthAndYear()}
+      </h2>
+      <h3 className="text-l font-bold text-center px-4 mb-6 lowercase text-primary1 font-varela">
+        This Month's Celebrants
+      </h3>
       {isLoading ? (
         <p>Celebrants loading...</p>
       ) : (
-        monthlyCelebs.map((monthlyCeleb) => {
-          return (
-            <SingleMonthlyCelebrant
-              monthlyCeleb={monthlyCeleb}
-              key={`${monthlyCeleb.id}`}
-            />
-          );
-        })
+        <div className="flex flex-wrap justify-evenly gap-y-6">
+          {monthlyCelebs.map((monthlyCeleb) => {
+            return (
+              <SingleMonthlyCelebrant
+                monthlyCeleb={monthlyCeleb}
+                key={`month${monthlyCeleb.id}`}
+              />
+            );
+          })}
+        </div>
       )}
     </div>
   );
