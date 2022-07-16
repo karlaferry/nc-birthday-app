@@ -8,6 +8,7 @@ import CelebrantPage from "./components/CelebrantPage";
 import VerifyEmail from "./components/VerifyEmail";
 import NotFound from "./components/NotFound";
 import { UserContext } from "./Contexts/User";
+import { ScreenSizeContext } from "./Contexts/ScreenSize";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase";
 import { getSingleUser } from "./utils/dbCalls";
@@ -15,6 +16,8 @@ import Footer from "./components/Footer";
 
 function App() {
   const { user, setUser, setUserData } = useContext(UserContext);
+  const { setScreenSize } = useContext(ScreenSizeContext);
+
   onAuthStateChanged(auth, (currentUser) => {
     if (currentUser) {
       if (currentUser.emailVerified) {
@@ -26,9 +29,10 @@ function App() {
     async function loadPage() {
       const singleUser = await getSingleUser(user.uid);
       setUserData(singleUser);
+      setScreenSize(window.screen.width);
     }
     user.uid && loadPage();
-  }, [setUserData, user.uid]);
+  }, [setUserData, user.uid, setScreenSize]);
 
   return (
     <div className="bg-primary2">
