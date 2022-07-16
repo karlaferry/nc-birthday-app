@@ -1,11 +1,21 @@
-import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase";
 import { UserContext } from "../Contexts/User";
+import { ScreenSizeContext } from "../Contexts/ScreenSize";
 
 export default function NavBar() {
   const { isLoggedIn } = useContext(UserContext);
+  const { screenSize, isValidScreenSize } = useContext(ScreenSizeContext);
+
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!isValidScreenSize) {
+      navigate("/uh-oh");
+    }
+  }, [screenSize, navigate]);
+
   const navContainer = `
   flex 
   mobile:flex-col

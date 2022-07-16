@@ -6,6 +6,7 @@ import RegisterLogin from "./components/RegisterLogin";
 import Dashboard from "./components/Dashboard";
 import CelebrantPage from "./components/CelebrantPage";
 import VerifyEmail from "./components/VerifyEmail";
+import ScreenInvalid from "./components/ScreenInvalid";
 import NotFound from "./components/NotFound";
 import { UserContext } from "./Contexts/User";
 import { ScreenSizeContext } from "./Contexts/ScreenSize";
@@ -16,7 +17,7 @@ import Footer from "./components/Footer";
 
 function App() {
   const { user, setUser, setUserData } = useContext(UserContext);
-  const { setScreenSize } = useContext(ScreenSizeContext);
+  const { screenSize, setScreenSize } = useContext(ScreenSizeContext);
 
   onAuthStateChanged(auth, (currentUser) => {
     if (currentUser) {
@@ -29,11 +30,16 @@ function App() {
     async function loadPage() {
       const singleUser = await getSingleUser(user.uid);
       setUserData(singleUser);
-      setScreenSize(window.screen.width);
     }
     user.uid && loadPage();
-  }, [setUserData, user.uid, setScreenSize]);
+  }, [setUserData, user.uid]);
 
+  useEffect(() => {
+    async function loadPage() {
+      setScreenSize(window.screen.width);
+    }
+    loadPage();
+  }, [screenSize, setScreenSize]);
   return (
     <div className="bg-primary2">
       <BrowserRouter>
@@ -44,6 +50,7 @@ function App() {
           <Route path="/verify" element={<VerifyEmail />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/celebrant/:id" element={<CelebrantPage />} />
+          <Route path="/uh-oh" element={<ScreenInvalid />} />
           <Route path="/*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
