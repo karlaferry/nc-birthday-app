@@ -4,7 +4,7 @@ export const ScreenSizeContext = createContext();
 
 export const ScreenSizeProvider = ({ children }) => {
   const [screenSize, setScreenSize] = useState(360);
-  const [isValidScreenSize, setIsValidScreenSize] = useState(false);
+  const [isValidScreenSize, setIsValidScreenSize] = useState(true);
 
   useEffect(() => {
     if (screenSize > 480 || screenSize < 360) {
