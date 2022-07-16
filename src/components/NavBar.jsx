@@ -14,7 +14,7 @@ export default function NavBar() {
     if (!isValidScreenSize) {
       navigate("/uh-oh");
     }
-  }, [screenSize, navigate]);
+  }, [screenSize, isValidScreenSize, navigate]);
 
   const navContainer = `
   flex 
