@@ -24,7 +24,7 @@ export default function Monthly() {
   }, []);
   return (
     <div>
-      <h2 className="text-3xl font-bold text-center mt-6 px-4 uppercase text-primary3 font-varela">
+      <h2 className="text-3xl font-bold text-center mt-12 px-4 uppercase text-primary3 font-varela">
         {getMonthAndYear()}
       </h2>
       <h3 className="text-l font-bold text-center px-4 mb-6 lowercase text-primary1 font-varela">

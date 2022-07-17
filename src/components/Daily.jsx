@@ -24,7 +24,7 @@ export default function Daily() {
 
   // Styling
   const dailyH2 =
-    "text-3xl font-bold text-center px-4 uppercase text-primary3 font-varela";
+    "text-3xl font-bold text-center px-4 uppercase text-primary3 font-varela mt-8";
   const dailyH3 =
     "text-l font-bold text-center px-4 mb-6 lowercase text-primary1 font-varela";
 
