@@ -28,6 +28,9 @@ export default function Daily() {
   const dailyH3 =
     "text-l font-bold text-center px-4 mb-6 lowercase text-primary1 font-varela";
 
+  const dailyH4 =
+    "text-xs font-bold text-center px-4 mb-6 text-primary3 font-varela";
+
   return (
     <div>
       <h2 className={dailyH2}>Today</h2>
@@ -36,9 +39,13 @@ export default function Daily() {
       ) : (
         <h3 className={dailyH3}>Daily Celebrant</h3>
       )}
-      {isLoading ? (
-        <p>Loading...</p>
-      ) : (
+      {!dailyCelebs.length && (
+        <h4 className={dailyH4}>
+          Here <span className="italic">NOT</span> be{" "}
+          <span className="line-through">dragons</span> celebrants...
+        </h4>
+      )}
+      {!isLoading && (
         <div className="flex flex-wrap justify-evenly gap-y-6">
           {dailyCelebs.map((dailyCeleb) => {
             return (

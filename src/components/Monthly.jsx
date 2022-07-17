@@ -30,9 +30,7 @@ export default function Monthly() {
       <h3 className="text-l font-bold text-center px-4 mb-6 lowercase text-primary1 font-varela">
         This Month's Celebrants
       </h3>
-      {isLoading ? (
-        <p>Celebrants loading...</p>
-      ) : (
+      {!isLoading && (
         <div className="flex flex-wrap justify-evenly gap-y-6">
           {monthlyCelebs.map((monthlyCeleb) => {
             return (
@@ -43,6 +41,11 @@ export default function Monthly() {
             );
           })}
         </div>
+      )}
+      {!monthlyCelebs.length && (
+        <h4 className="text-xs font-bold text-center px-4 mb-6 text-primary3 font-varela">
+          No Northcoders were born this month.
+        </h4>
       )}
     </div>
   );
