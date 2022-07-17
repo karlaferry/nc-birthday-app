@@ -15,9 +15,12 @@ export default function SingleDailyCelebrant({ dailyCeleb }) {
       <div className="rounded-b-lg py-3 px-5 bg-accent1 text-primary3 font-varela font-bold text-lg flex flex-row justify-between items-center">
         <h4 className="uppercase">{dailyCeleb.first_name}</h4>
         <button
-          onClick={() => navigate(`/celebrant/${dailyCeleb.id}`)}
-          disabled={!user.emailVerified}
-          className="bg-primary3 text-primary2 lowercase text-sm font-bold py-1.5 px-4 rounded"
+          onClick={() =>
+            !user.emailVerified
+              ? alert("Please log in or register.")
+              : navigate(`/celebrant/${dailyCeleb.id}`)
+          }
+          className="hover:bg-accent2 hover:text-primary2 bg-primary3 text-primary2 lowercase text-sm font-bold py-1.5 px-4 rounded"
         >
           {user.uid === dailyCeleb.id ? "See Your Greetings" : "greet me"}
         </button>
