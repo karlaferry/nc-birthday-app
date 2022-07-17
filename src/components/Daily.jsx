@@ -39,23 +39,24 @@ export default function Daily() {
       ) : (
         <h3 className={dailyH3}>Daily Celebrant</h3>
       )}
-      {!dailyCelebs.length && (
+      {!dailyCelebs.length ? (
         <h4 className={dailyH4}>
           Here <span className="italic">NOT</span> be{" "}
           <span className="line-through">dragons</span> celebrants...
         </h4>
-      )}
-      {!isLoading && (
-        <div className="flex flex-wrap justify-evenly gap-y-6">
-          {dailyCelebs.map((dailyCeleb) => {
-            return (
-              <SingleDailyCelebrant
-                dailyCeleb={dailyCeleb}
-                key={`daily${dailyCeleb.id}`}
-              />
-            );
-          })}
-        </div>
+      ) : (
+        !isLoading && (
+          <div className="flex flex-wrap justify-evenly gap-y-6">
+            {dailyCelebs.map((dailyCeleb) => {
+              return (
+                <SingleDailyCelebrant
+                  dailyCeleb={dailyCeleb}
+                  key={`daily${dailyCeleb.id}`}
+                />
+              );
+            })}
+          </div>
+        )
       )}
     </div>
   );
