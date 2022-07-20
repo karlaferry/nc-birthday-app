@@ -3,11 +3,11 @@ import { createContext, useState, useEffect } from "react";
 export const ScreenSizeContext = createContext();
 
 export const ScreenSizeProvider = ({ children }) => {
-  const [screenSize, setScreenSize] = useState(360);
+  const [screenSize, setScreenSize] = useState(300);
   const [isValidScreenSize, setIsValidScreenSize] = useState(true);
 
   useEffect(() => {
-    if (screenSize > 480 || screenSize < 360) {
+    if (screenSize > 480) {
       setIsValidScreenSize(false);
     } else setIsValidScreenSize(true);
   }, [screenSize]);
