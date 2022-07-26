@@ -20,6 +20,7 @@ export default function Login() {
 	const logIn = async (e) => {
 		try {
 			e.preventDefault();
+			console.log("clicked");
 			await signInWithEmailAndPassword(auth, logInEmail, logInPassword);
 			navigate("/dashboard");
 		} catch (e) {
@@ -42,7 +43,7 @@ export default function Login() {
 	return (
 		<div>
 			<h2 className={h2}>Login</h2>
-			<form className="px-12 pt-2 pb-6 mb-1" onSubmit={logIn}>
+			<form className="px-12 pt-2 pb-6 mb-1">
 				<div className="mb-4">
 					<label className="block text-primary3 text-sm font-varela lowercase mb-2" htmlFor="email">
 						email
@@ -71,7 +72,7 @@ export default function Login() {
 					/>
 				</div>
 				<div className="flex items-center justify-between">
-					<button className={buttons} type="button">
+					<button className={buttons} type="button" onClick={logIn}>
 						Log In
 					</button>
 				</div>
