@@ -16,21 +16,6 @@ export default function Register() {
   const [errorMsg, setErrorMsg] = useState("");
   const navigate = useNavigate();
 
-  const handleEmail = (e) => {
-    setRegisterEmail(e.target.value);
-  };
-  const handlePassword = (e) => {
-    setRegisterPassword(e.target.value);
-  };
-
-  const handleFirstName = (e) => {
-    setFirstName(e.target.value);
-  };
-
-  const handleBirthdate = (e) => {
-    setBirthdate(formatDate(e.target.value));
-  };
-
   const register = async (e) => {
     try {
       e.preventDefault();
@@ -81,7 +66,7 @@ export default function Register() {
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="regEmail"
             type="email"
-            onChange={handleEmail}
+            onChange={(e) => setRegisterEmail(e.target.value)}
             placeholder="Email"
           />
         </div>
@@ -96,7 +81,7 @@ export default function Register() {
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="firstName"
             type="text"
-            onChange={handleFirstName}
+            onChange={(e) => setFirstName(e.target.value)}
             placeholder="First Name"
           />
         </div>
@@ -111,7 +96,7 @@ export default function Register() {
             className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             id="regPassword"
             type="password"
-            onChange={handlePassword}
+            onChange={(e) => setRegisterPassword(e.target.value)}
             placeholder="******************"
           />
         </div>
@@ -126,7 +111,7 @@ export default function Register() {
             className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             id="birthdate"
             type="date"
-            onChange={handleBirthdate}
+            onChange={(e) => setBirthdate(formatDate(e.target.value))}
           />
         </div>
         <div className="flex items-center justify-between">
