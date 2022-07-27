@@ -73,8 +73,10 @@ export default function Login() {
             Log In
           </button>
         </div>
+        {errorMsg && (
+          <p className="font-varela text-primary1 mt-3 italic">{errorMsg}</p>
+        )}
       </form>
-      {errorMsg && <p>{errorMsg}</p>}
     </div>
   );
 }
